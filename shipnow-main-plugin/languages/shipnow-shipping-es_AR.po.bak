@@ -1,0 +1,332 @@
+# Copyright (C) 2021 Shipnow
+# This file is distributed under the same license as the Shipnow Shipping plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shipnow Shipping 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
+"plugin\n"
+"POT-Creation-Date: 2021-07-21T03:31:40+00:00\n"
+"PO-Revision-Date: 2021-07-21 00:35-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Domain: shipnow-shipping\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: shipping.php:15
+msgid "Shipnow"
+msgstr "Shipnow"
+
+#. Description of the plugin
+msgid ""
+"Adds a custom shipping method for Shipnow to your Woocommerce with automatic "
+"shipping cost estimate."
+msgstr ""
+"Agrega un método de envío mediante Shipnow a tu WooCommerce con cotizador de "
+"costo de envío automático."
+
+#. Author URI of the plugin
+msgid "https://www.shipnow.com.ar"
+msgstr "https://www.shipnow.com.ar"
+
+#: api.php:50
+msgid "Door to door"
+msgstr "Puerta a puerta"
+
+#: api.php:51
+msgid "Home delivery"
+msgstr "Envío a domicilio"
+
+#: api.php:56
+msgid "Door to post office"
+msgstr "Puerta a sucursal"
+
+#: api.php:57
+msgid "Pick up at post office"
+msgstr "Retira por sucursal del correo"
+
+#: api.php:62
+msgid "Door to door express"
+msgstr "Puerta a puerta Express"
+
+#: api.php:63
+msgid "Express home delivery"
+msgstr "Envío a domicilio express"
+
+#: plugin.php:109
+msgid "New ZIP code:"
+msgstr "Código postal:"
+
+#: plugin.php:110
+msgid "Ok"
+msgstr "Aceptar"
+
+#: plugin.php:117
+msgid "Select post office"
+msgstr "Elegí tu sucursal"
+
+#: plugin.php:118
+msgid "Change ZIP Code"
+msgstr "Cambiar CP"
+
+#: plugin.php:119
+msgid "We were unable to fetch the post office list. Please try again."
+msgstr "No hay opciones de envío para ese CP."
+
+#: plugin.php:122
+msgid "The ZIP code is not valid!"
+msgstr "Ingresá un CP válido."
+
+#: plugin.php:154
+msgid ""
+"Warning! It looks like your Shipnow token is not valid or it is't a token "
+"for WooCommerce. <a href=\"%s\">Click here</a> to configure a new token or "
+"visit <a href=\"%s\" target=\"_blank\">our portal</a> for more info."
+msgstr ""
+"¡Atención! Parece que el token de Shipnow no es válido o no es un token para "
+"WooCommerce. <a href=\"%s\">Hacé click aquí</a> para configurar uno nuevo o "
+"<a href=\"%s\" target=\"_blank\">nuestro portal</a> para más info."
+
+#: plugin.php:163
+msgid "Hi!"
+msgstr "¡Hola!"
+
+#: plugin.php:164
+msgid ""
+"Click <a href=\"%s\">here</a> to configure the plugin with Shipnow. You can "
+"find more info about how to set up the plugin at <a href=\"%s\" target="
+"\"_blank\">our portal</a>."
+msgstr ""
+"Accede <a href=\"%s\">aquí</a> para configurar el plugin para la integración "
+"con Shipnow. Desde nuestro <a href=\"%s\" target=\"_blank\">portal de ayuda</"
+"a> vas a poder obtener más información sobre cómo hacerlo."
+
+#: plugin.php:240
+msgid "Free"
+msgstr "Gratis"
+
+#: plugin.php:248
+msgid "Arrives on %s"
+msgstr "Llega el %s"
+
+#: plugin.php:253
+msgid "Arrives between %s and %s"
+msgstr "Llega entre el %s y el %s"
+
+#: shipping.php:17
+msgid "Custom shipping method for Shipnow."
+msgstr "Método de envío personalizado para Shipnow."
+
+#: shipping.php:60
+msgid "Enable Shipnow"
+msgstr "Habilitar Shipnow"
+
+#: shipping.php:61
+msgid "Enable Shipnow for your store."
+msgstr "Habilitar Shipnow en tu tuenda."
+
+#: shipping.php:66
+msgid "Token"
+msgstr "Token"
+
+#: shipping.php:67
+msgid ""
+"Enter the token you can find in your Shipnow account > Stores > Woocommerce "
+"> Checkout configuration."
+msgstr ""
+"Ingresá el token que podés encontrar en tu cuenta de Shipnow > Puntos de "
+"venta > Woocommerce > Configuración de Checkout."
+
+#: shipping.php:74
+msgid ""
+"Looks like the value you entered is not a valid Shipnow token. Fix it or <a "
+"href=\"https://shipnow.com.ar\" target=\"_blank\">contact us</a> to continue."
+msgstr ""
+"Parece que el valor ingresado no es un token de Shipnow válido. Revisalo o "
+"<a href=\"https://shipnow.com.ar\" target=\"_blank\">contactanos</a> para "
+"poder continuar."
+
+#: shipping.php:76
+msgid ""
+"Looks like the token is a valid Shipnow token, but it isn't a WooCommerce "
+"token. Enter your WooCommerce token to continue or <a href=\"https://shipnow."
+"com.ar\" target=\"_blank\">contact us</a> if you have any questions."
+msgstr ""
+"Parece que el valor ingresado es un token de Shipnow válido, pero no es el "
+"token para WooCommerce. Ingresá tu token WooCommerce o <a href=\"https://"
+"shipnow.com.ar\" target=\"_blank\">contactanos</a> si tenés alguna duda."
+
+#: shipping.php:82
+msgid "Invalid token!"
+msgstr "¡Token inválido!"
+
+#: shipping.php:100
+msgid "Enable widget"
+msgstr "Habilitar widget"
+
+#: shipping.php:101
+msgid "Enable the shipping cost estimator widget on the product page."
+msgstr "Habilitar el cotizador de envíos en la página del producto."
+
+#: shipping.php:106
+msgid "Widget title"
+msgstr "Título del widget"
+
+#: shipping.php:107
+msgid "Add a title above the widget, if enabled (optional)."
+msgstr "Agregá un título al widget (opcional)."
+
+#: shipping.php:111
+msgid "Round shipping cost"
+msgstr "Redondear costo de envío"
+
+#: shipping.php:112
+msgid ""
+"Check this option to round the shipping cost (ex. $500), or unckeck it to "
+"keep the cost rounded to two decimal places (ex. $500,00)."
+msgstr ""
+"Marcá esta opción para redondear el costo de envío (ej. $500), o desmarcala "
+"para mantener el costo redondeado a dos decimales (ej. $500,00)."
+
+#: shipping.php:116
+msgid "Display estimated delivery time"
+msgstr "Mostrar plazo de entrega estimado"
+
+#: shipping.php:117
+msgid ""
+"Check to display the estimated delivery time (in business days) in the "
+"widgets and the shopping cart."
+msgstr ""
+"Habilitar para mostrar el plazo de entrega estimado (en días hábiles) en los "
+"widgets y en el carro de pedido."
+
+#: shipping.php:129
+msgid "Enable this shipping option"
+msgstr "Habilitar esta forma de envío"
+
+#: shipping.php:134
+msgid "Description"
+msgstr "Descripción"
+
+#: shipping.php:135
+msgid "Description that your users will see."
+msgstr "Descripción que verán tus usuarios."
+
+#: shipping.php:140
+msgid "Set an additional cost or discount"
+msgstr "Agregar un costo adicional o descuento"
+
+#: shipping.php:141
+msgid ""
+"Additional cost or discount value over the shipping cost estimate (optional)"
+msgstr ""
+"Costo adicional o descuento sobre el costo de envío cotizado (opcional)."
+
+#: shipping.php:145
+msgid "No"
+msgstr "No"
+
+#: shipping.php:146
+msgid "Additional cost"
+msgstr "Costo adicional"
+
+#: shipping.php:147
+msgid "Discount"
+msgstr "Descuento"
+
+#: shipping.php:151
+msgid "Additional cost or discount value"
+msgstr "Importe"
+
+#: shipping.php:152
+msgid "In ARS"
+msgstr "En Pesos"
+
+#: shipping.php:157
+msgid "Additional days"
+msgstr "Días adicionales"
+
+#: shipping.php:158
+msgid "Additional business days over the estimated delivery time (optional)."
+msgstr ""
+"Días hábiles adicionales sobre el plazo de entrega estimado (opcional)."
+
+#: shipping.php:177
+msgid "Additional days value is not valid. Enter numbers only."
+msgstr "La cantidad de días adicionales no es válida. Ingresá solo números."
+
+#: shipping.php:183
+msgid "Additional cost or discount value is not valid. Enter numbers only."
+msgstr ""
+"El valor del costo adicional o descuento no es válido. Ingresá solo números."
+
+#: widget.php:75
+msgid "View post offices"
+msgstr "Ver sucursales"
+
+#: widget.php:91
+msgid "Starting at"
+msgstr "Desde"
+
+#: widget.php:94
+msgid "You will select the post office in the shopping cart."
+msgstr "Podrás seleccionar tu sucursal al finalizar la compra."
+
+#: widget.php:125
+msgid "Select"
+msgstr "Seleccionar"
+
+#: widget.php:184
+msgid "Zip code:"
+msgstr "Código postal:"
+
+#: widget.php:185
+msgid "We were unable to get the shipping cost for that Zip code."
+msgstr "No pudimos obtener el costo de envío para ese CP."
+
+#: woocommerce.php:69
+msgid "Select the post office."
+msgstr "Elegí la sucursal de correo donde retirarás tu pedido."
+
+#~ msgid "%s business days"
+#~ msgstr "%s días hábiles"
+
+#~ msgid ""
+#~ "Go to your <a href=\"%s\">WooCommerce shipping settings</a> to configure "
+#~ "the plugin, or <a href=\"%s\" target=\"_blank\">visit our website</a> to "
+#~ "get a Shipnow account."
+#~ msgstr ""
+#~ "Ingresá a <a href=\"%s\">la configuración de envíos de WooCommerce</a> "
+#~ "para configurar el plugin, o <a href=\"%s\" target=\"_blank\">visitá "
+#~ "nuestro sitio web</a> para abrir una cuenta en Shipnow."
+
+#~ msgid "Discount on the shipping cost estimate (optional, in ARS)."
+#~ msgstr "Descuento sobre el costo de envío cotizado (opcional, en pesos)."
+
+#~ msgid "Store"
+#~ msgstr "Store"
+
+#~ msgid "Select the store you want to use for your Shipnow orders."
+#~ msgstr ""
+#~ "Seleccioná el Store que querés utilizar para tus pedidos con Shipnow."
+
+#~ msgid "Shipnow Shipping"
+#~ msgstr "Envío Shipnow"
+
+#~ msgid ""
+#~ "Paste the code you got from Shipnow and click Save settings to continue "
+#~ "the setup."
+#~ msgstr ""
+#~ "Pegá el código que te enviamos desde Shipnow y hacé click en Guardar "
+#~ "configuración para continuar."
+
+#~ msgid "Shipnow shipping cost estimator"
+#~ msgstr "Cotizador de envíos Shipnow"
+
+#~ msgid "Shipping type:"
+#~ msgstr "Tipo de envío:"

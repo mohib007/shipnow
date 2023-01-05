@@ -1,0 +1,1 @@
+php wp-cli.phar i18n make-pot .. ../languages/shipnow-shipping.pot

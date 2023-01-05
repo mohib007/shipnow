@@ -1,0 +1,367 @@
+<?php
+namespace shipnow_shipping;
+
+defined('ABSPATH') or exit;
+
+/**
+ * Clase principal del plugin.
+ */
+class plugin {
+	protected static $api=null;
+	const id='shipnow_shipping';
+	/** @var bool minifiedAssets Utilizar las versiones `.min` de los archivos JS y CSS (establecer a `true` en producción). */
+	const minifiedAssets=true;
+	const version=1;
+
+	/**
+	 * Devuelve la instancia de API de Shipnow.
+	 * @return shipnow_shipping\api
+	 */
+	public static function api() {
+		if(!self::$api) self::$api=new api;
+
+		$settings=self::getSettings();
+		if($settings->token) self::$api->setToken($settings->token);
+
+		return self::$api;
+	}
+
+	/**
+	 * Inicializa el plugin.
+	 */
+	public static function init() {
+		self::addActions();
+		self::includeFiles();
+
+		woocommerce::init();
+		widget::init();
+	}
+
+	/**
+	 * Incluye todos los archivos del plugin.
+	 */
+	protected static function includeFiles() {
+		include_once(__DIR__.'/api.php');
+		include_once(__DIR__.'/widget.php');
+		include_once(__DIR__.'/woocommerce.php');
+	}
+
+	/**
+	 * Establece todas las acciones y filtros.
+	 */
+	protected static function addActions() {
+		$c=self::class.'::';
+		add_action('init',$c.'plugins_loaded');
+		add_action('admin_init',$c.'admin_init');
+		add_action('admin_head',$c.'admin_head');
+		add_action('admin_notices',$c.'admin_notices');
+		add_action('wp_enqueue_scripts',$c.'wp_enqueue_scripts');
+		add_action('widgets_init',$c.'widgets_init');
+	}
+
+	/**
+	 * Devuelve la configuración del plugin.
+	 * @return object
+	 */
+	public static function getSettings() {
+		$obj=(object)get_option('woocommerce_'.self::id.'_settings');
+
+		$boolFields=['enabled','enable_widget','round','display_days'];
+		foreach((new api)->getShippingTypes() as $type=>$options)
+			$boolFields[]=$type.'_enabled';
+
+		foreach($boolFields as $key)
+			$obj->$key=$obj->$key=='yes';
+
+		return $obj;
+	}
+
+	/**
+	 * Devuelve la URL pública al directorio del plugin.
+	 * @return string
+	 */
+	public static function getPluginUrl() {
+		return plugin_dir_url(__DIR__.'/shipnow-shipping.php');
+	}
+
+	/**
+	 * Acción `plugins_loaded`.
+	 */
+	public static function plugins_loaded() {
+		load_plugin_textdomain('shipnow-shipping',false,'shipnow-shipping/languages');
+	}
+
+	/**
+	 * Acción `widgets_init`. 
+	 */
+	public static function widgets_init() {
+		//register_widget('\\shipnow_shipping\\widget');
+	}
+
+	/**
+	 * Acción `wp_enqueue_scripts`.
+	 */
+	public static function wp_enqueue_scripts() {
+		$popupHtml=file_get_contents(__DIR__.'/html/popup.html');
+		$changeZipHtml=file_get_contents(__DIR__.'/html/change-zip.html');
+
+		$changeZipHtml=plugin::strReplaceArray([
+			'{newZipLabel}'=>__('New ZIP code:','shipnow-shipping'),
+			'{okLabel}'=>__('Ok','shipnow-shipping')
+		],$changeZipHtml);
+
+		wp_enqueue_style('shipnow-shipping-style',self::getPluginUrl().'css/widget.'.(self::minifiedAssets?'min.':'').'css');
+		
+		wp_enqueue_script('shipnow-shipping-js',self::getPluginUrl().'js/widget.'.(self::minifiedAssets?'min.':'').'js',['jquery']);
+		
+		
+		wp_localize_script('shipnow-shipping-js','shipnow',[
+            'ajaxurl'=>admin_url('admin-ajax.php'),
+			'_selectPostOffice'=>__('Select post office','shipnow-shipping'),
+			'_changeZipCode'=>__('Change ZIP Code','shipnow-shipping'),
+			'_unableToGetPostOffices'=>__('We were unable to fetch the post office list. Please try again.','shipnow-shipping'),
+			'_popupHtml'=>$popupHtml,
+			'_changeZipHtml'=>$changeZipHtml,
+			'_invalidZipError'=>__('The ZIP code is not valid!','shipnow-shipping')
+        ]);
+	}
+
+	/**
+	 * Acción `admin_init`.
+	 */
+	public static function admin_init() {
+		wp_enqueue_style('shipnow-shipping-admin-style',self::getPluginUrl().'css/admin.'.(self::minifiedAssets?'min.':'').'css');
+	}
+
+	/**
+	 * Acción `admin_head`.
+	 */
+	public static function admin_head() {
+	}
+
+	/**
+	 * Acción `admin_notices`.
+	 */
+	public static function admin_notices() {
+		$settings=self::getSettings();
+
+		if($_GET['section']==self::id) return;
+
+		if($settings->token) {
+			$validToken=self::api()
+ 				->setToken($settings->token)
+ 				->validateToken();
+
+			if($validToken) return;
+
+			$error=sprintf(__('Warning! It looks like your Shipnow token is not valid or it is\'t a token for WooCommerce. <a href="%s">Click here</a> to configure a new token or visit <a href="%s" target="_blank">our portal</a> for more info.','shipnow-shipping'),
+				'admin.php?page=wc-settings&tab=shipping&section='.self::id,
+				'https://shipnow.com');
+			echo '<div class="notice notice-warning"><p>'.$error.'</p></div>';
+			return;
+		}
+
+		echo self::strReplaceArray([
+			'{url}'=>self::getPluginUrl(),
+			'{title}'=>__('Hi!','shipnow-shipping'),
+			'{text}'=>sprintf(__('Click <a href="%s">here</a> to configure the plugin with Shipnow. You can find more info about how to set up the plugin at <a href="%s" target="_blank">our portal</a>.','shipnow-shipping'),
+					'admin.php?page=wc-settings&tab=shipping&section='.self::id,
+					'https://shipnow.com')
+		],file_get_contents(__DIR__.'/html/notice.html'));
+	}	
+
+	/**
+	 * Devuelve los tipos de envío que están habilitados en la configuración.
+	 * @return array
+	 */
+	public static function getEnabledShippingTypes() {
+		$config=self::getSettings();
+
+		$types=[];
+		foreach(self::api()->getShippingTypes() as $type=>$options) {
+			$k=$type.'_enabled';
+			if(!$config->$k) continue;
+			
+			$k=$type.'_description';
+			$description=trim($config->$k)?$config->$k:$options->description;
+
+
+
+			$types[$type]=$description;
+		}
+
+		return $types;
+	}
+
+	/**
+	 * Corrige la cotización obtenida desde el API sumando los costos y días adicionales y preparando el formato de salida.
+	 * @param object $est Cotización.
+	 * @param bool $fullDescription Incluir descripción completa.
+	 * @return object
+	 */
+	public static function fixShippingEstimate($est,$fullDescription=true) {
+		$settings=self::getSettings();
+
+		$k=$est->typeName.'_cost';
+		$addCost=floatval($settings->$k);
+
+		$k=$est->typeName.'_discount_type';
+		$discountSign=[
+			0=>0,
+			1=>1,
+			2=>-1
+		][$settings->$k];
+
+		$k=$est->typeName.'_discount_value';
+		$addCost=$discountSign*floatval($settings->$k);
+
+		$k=$est->typeName.'_days';
+		$addDays=intval($settings->$k);
+
+		$est->cost+=$addCost;
+		if($est->cost<0) $est->cost=0;
+
+
+		$est->costNumeric=$est->cost;
+
+		if($est->cost<=0) {
+			$est->cost='Gratis';
+		} else {
+			if($settings->round) {
+				$est->cost=number_format(round($est->cost),0,'','.');
+			} else {
+				$est->cost=number_format($est->cost,2,',','.');
+			}
+			$est->cost='$ '.$est->cost;
+		}
+
+		if($addDays) {
+			$est->days_min=self::addBusinessDays($est->days_min,$addDays);
+			$est->days_max=self::addBusinessDays($est->days_max,$addDays);
+		}
+
+		$k=$est->typeName.'_description';
+		if($settings->$k) {
+			$est->title=$settings->$k;
+		} else {
+			$est->title=$est->type->description;
+		}
+
+		$est->description='';
+		if($est->to&&$fullDescription) $est->description=$est->to;
+
+		//TODO Formato de fecha
+		if($est->days_min==$est->days_max) {
+			$est->days=sprintf(
+				__('Arrives on %s','shipnow-shipping'),
+				date('j/n',time()+$est->days_min*86400)
+			);
+		} else {
+			$est->days=sprintf(
+				__('Arrives between %s and %s','shipnow-shipping'),
+				date('j/n',time()+$est->days_min*86400),
+				date('j/n',time()+$est->days_max*86400)
+			);
+		}
+
+		if($settings->display_days) {
+			if($est->description) $est->description.=' ';
+			$est->description.=$est->days;
+		}
+
+		return $est;
+	}
+
+	/**
+	 * Aplica `plugin::fixShippingEstimates()` a cada elemento del listado.
+	 * @param array $estimates Cotizaciones.
+	 * @param bool $fullDescription Incluir descripción completa.
+	 * @return array
+	 */
+	public static function fixShippingEstimates($estimates,$fullDescription=true) {
+		if(!is_array($estimates)) return null;
+		foreach($estimates as $key=>$value)
+			$estimates[$key]=self::fixShippingEstimate($value,$fullDescription);
+		return $estimates;
+	}
+
+	/**
+	 * Devuelve las cotizaciones para todas las opciones de envío correspondientes al CP y los tipos de envío habilitados, preparados
+	 * para mostrar de acuerdo a la configuración.
+	 * @param string $zip CP.
+	 * @param float $weight Peso total.
+	 * @param float $volume Volumen total.
+	 * @param array $offices Listado de sucursales por tipo de correo.
+	 * @return array
+	 */
+	public static function getEstimatesAvailableShippingOptions($zip,$weight,$volume,&$offices=null) {
+		$types=self::getEnabledShippingTypes();
+
+		$estimates=self::api()->getShippingEstimates($zip,array_keys($types),$weight,$volume);
+		if(!$estimates||!count($estimates)) return null;
+
+		$estimates=self::fixShippingEstimates($estimates,false);
+
+		//Agrupar por correo y tipo de envío
+		$distinct=[];
+		foreach($estimates as $estimate) {
+			$code=$estimate->carrierCode.'_'.$estimate->typeName;
+
+			if(array_key_exists($code,$distinct)) {
+				//Si ya existe, buscar menor precio, menor/maxima fechas
+				if($distinct[$code]->cost>$estimate->cost) {
+					$distinct[$code]->cost=$estimate->cost;
+					$distinct[$code]->values_from=true;
+				}
+				if($distinct[$code]->days_min>$estimate->days_min) {
+					$distinct[$code]->days_min=$estimate->days_min;
+					$distinct[$code]->days_max=$estimate->days_max;
+					$distinct[$code]->values_from=true;
+				}
+			} else {
+				$distinct[$code]=$estimate;
+			}
+
+			$estimate->groupCode=$code;
+
+			if(is_array($offices)) {
+				if(!is_array($offices[$code])) $offices[$code]=[];
+				$offices[$code][]=$estimate;
+			}
+		}
+
+		return $distinct;
+	}
+
+	////Utilidades
+
+	/**
+	 * Suma la cantidad de días `$add` teniendo en cuenta los días no laborables (sábados y domingos) asumiendo que `$days` es
+	 * una cantidad de días corridos desde la fecha actual.
+	 * @param int $days Cantidad de días inicial.
+	 * @param int $add Cantidad de días hábiles adicionales.
+	 * @return int
+	 */
+	public static function addBusinessDays($days,$add) {
+		if($add<1) return $days;
+
+		for($i=0,$added=1;$added<$add;$i++) {
+			$days++;
+
+			$day=strtotime('today +'.$days.' days');
+			$weekday=date('w',$day);
+			if($weekday!=0&&$weekday!=6) $added++;			
+		}
+		return $days;
+	}
+
+	/**
+	 * Reemplaza un array asociativo en una cadena. Equivalente a `str_replace(claves,valores,$str)`.
+	 * @param array $arr A reemplazar.
+	 * @param string $str Cadena.
+	 * @return string
+	 */
+	public static function strReplaceArray($arr,$str) {
+		return str_replace(array_keys($arr),array_values($arr),$str);
+	}
+}

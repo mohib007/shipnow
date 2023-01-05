@@ -1,0 +1,18 @@
+<?php
+/*
+Plugin Name: Shipnow
+Description: Adds a custom shipping method for Shipnow to your Woocommerce with automatic shipping cost estimate
+Version: 1.0.2
+Author: Shipnow
+Author URI: https://www.shipnow.com.ar
+Text Domain: shipnow-shipping
+Domain Path: /languages
+*/
+
+namespace shipnow_shipping;
+
+defined('ABSPATH') or exit;
+
+include_once(__DIR__.'/plugin.php');
+plugin::init();
+

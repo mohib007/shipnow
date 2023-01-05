@@ -1,0 +1,39 @@
+.shipnow-notice {
+	margin-top: 45px !important;
+}
+.shipnow-notice-row {
+	display: flex;
+    align-items: center;
+    padding: 39px;
+}
+.shipnow-notice-img {
+	height: 130px;
+    margin-right: 58px;
+	display: block;
+}
+.shipnow-notice-text {
+	flex: 1;
+}
+.shipnow-notice-logo img {
+	max-width: 100px;
+	display: block;
+    margin-left: 58px;
+}
+@media (max-width: 700px) {
+	.shipnow-notice-row {
+	    flex-wrap: wrap;
+	}
+	.shipnow-notice-logo {
+		flex: 0 0 100%;
+    	margin-top: 32px;
+	}
+	.shipnow-notice-logo img {
+		margin: auto;
+	}
+}
+@media (max-width: 500px) {
+	.shipnow-notice-img {
+		height: auto;
+    	width: 29%;
+    }
+}

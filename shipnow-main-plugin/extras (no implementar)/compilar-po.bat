@@ -1,0 +1,1 @@
+msgfmt -o ../languages/shipnow-shipping-es_AR.mo ../languages/shipnow-shipping-es_AR.po

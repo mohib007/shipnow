@@ -1,0 +1,249 @@
+# Copyright (C) 2021 Shipnow
+# This file is distributed under the same license as the Shipnow plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shipnow 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-plugin\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-07-21T03:31:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: shipnow-shipping\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: shipping.php:15
+msgid "Shipnow"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds a custom shipping method for Shipnow to your Woocommerce with automatic shipping cost estimate."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.shipnow.com.ar"
+msgstr ""
+
+#: api.php:50
+msgid "Door to door"
+msgstr ""
+
+#: api.php:51
+msgid "Home delivery"
+msgstr ""
+
+#: api.php:56
+msgid "Door to post office"
+msgstr ""
+
+#: api.php:57
+msgid "Pick up at post office"
+msgstr ""
+
+#: api.php:62
+msgid "Door to door express"
+msgstr ""
+
+#: api.php:63
+msgid "Express home delivery"
+msgstr ""
+
+#: plugin.php:109
+msgid "New ZIP code:"
+msgstr ""
+
+#: plugin.php:110
+msgid "Ok"
+msgstr ""
+
+#: plugin.php:117
+msgid "Select post office"
+msgstr ""
+
+#: plugin.php:118
+msgid "Change ZIP Code"
+msgstr ""
+
+#: plugin.php:119
+msgid "We were unable to fetch the post office list. Please try again."
+msgstr ""
+
+#: plugin.php:122
+msgid "The ZIP code is not valid!"
+msgstr ""
+
+#: plugin.php:154
+msgid "Warning! It looks like your Shipnow token is not valid or it is't a token for WooCommerce. <a href=\"%s\">Click here</a> to configure a new token or visit <a href=\"%s\" target=\"_blank\">our portal</a> for more info."
+msgstr ""
+
+#: plugin.php:163
+msgid "Hi!"
+msgstr ""
+
+#: plugin.php:164
+msgid "Click <a href=\"%s\">here</a> to configure the plugin with Shipnow. You can find more info about how to set up the plugin at <a href=\"%s\" target=\"_blank\">our portal</a>."
+msgstr ""
+
+#: plugin.php:240
+msgid "Free"
+msgstr ""
+
+#: plugin.php:248
+msgid "Arrives on %s"
+msgstr ""
+
+#: plugin.php:253
+msgid "Arrives between %s and %s"
+msgstr ""
+
+#: shipping.php:17
+msgid "Custom shipping method for Shipnow."
+msgstr ""
+
+#: shipping.php:60
+msgid "Enable Shipnow"
+msgstr ""
+
+#: shipping.php:61
+msgid "Enable Shipnow for your store."
+msgstr ""
+
+#: shipping.php:66
+msgid "Token"
+msgstr ""
+
+#: shipping.php:67
+msgid "Enter the token you can find in your Shipnow account > Stores > Woocommerce > Checkout configuration."
+msgstr ""
+
+#: shipping.php:74
+msgid "Looks like the value you entered is not a valid Shipnow token. Fix it or <a href=\"https://shipnow.com.ar\" target=\"_blank\">contact us</a> to continue."
+msgstr ""
+
+#: shipping.php:76
+msgid "Looks like the token is a valid Shipnow token, but it isn't a WooCommerce token. Enter your WooCommerce token to continue or <a href=\"https://shipnow.com.ar\" target=\"_blank\">contact us</a> if you have any questions."
+msgstr ""
+
+#: shipping.php:82
+msgid "Invalid token!"
+msgstr ""
+
+#: shipping.php:100
+msgid "Enable widget"
+msgstr ""
+
+#: shipping.php:101
+msgid "Enable the shipping cost estimator widget on the product page."
+msgstr ""
+
+#: shipping.php:106
+msgid "Widget title"
+msgstr ""
+
+#: shipping.php:107
+msgid "Add a title above the widget, if enabled (optional)."
+msgstr ""
+
+#: shipping.php:111
+msgid "Round shipping cost"
+msgstr ""
+
+#: shipping.php:112
+msgid "Check this option to round the shipping cost (ex. $500), or unckeck it to keep the cost rounded to two decimal places (ex. $500,00)."
+msgstr ""
+
+#: shipping.php:116
+msgid "Display estimated delivery time"
+msgstr ""
+
+#: shipping.php:117
+msgid "Check to display the estimated delivery time (in business days) in the widgets and the shopping cart."
+msgstr ""
+
+#: shipping.php:129
+msgid "Enable this shipping option"
+msgstr ""
+
+#: shipping.php:134
+msgid "Description"
+msgstr ""
+
+#: shipping.php:135
+msgid "Description that your users will see."
+msgstr ""
+
+#: shipping.php:140
+msgid "Set an additional cost or discount"
+msgstr ""
+
+#: shipping.php:141
+msgid "Additional cost or discount value over the shipping cost estimate (optional)"
+msgstr ""
+
+#: shipping.php:145
+msgid "No"
+msgstr ""
+
+#: shipping.php:146
+msgid "Additional cost"
+msgstr ""
+
+#: shipping.php:147
+msgid "Discount"
+msgstr ""
+
+#: shipping.php:151
+msgid "Additional cost or discount value"
+msgstr ""
+
+#: shipping.php:152
+msgid "In ARS"
+msgstr ""
+
+#: shipping.php:157
+msgid "Additional days"
+msgstr ""
+
+#: shipping.php:158
+msgid "Additional business days over the estimated delivery time (optional)."
+msgstr ""
+
+#: shipping.php:177
+msgid "Additional days value is not valid. Enter numbers only."
+msgstr ""
+
+#: shipping.php:183
+msgid "Additional cost or discount value is not valid. Enter numbers only."
+msgstr ""
+
+#: widget.php:75
+msgid "View post offices"
+msgstr ""
+
+#: widget.php:91
+msgid "Starting at"
+msgstr ""
+
+#: widget.php:94
+msgid "You will select the post office in the shopping cart."
+msgstr ""
+
+#: widget.php:125
+msgid "Select"
+msgstr ""
+
+#: widget.php:184
+msgid "Zip code:"
+msgstr ""
+
+#: widget.php:185
+msgid "We were unable to get the shipping cost for that Zip code."
+msgstr ""
+
+#: woocommerce.php:69
+msgid "Select the post office."
+msgstr ""

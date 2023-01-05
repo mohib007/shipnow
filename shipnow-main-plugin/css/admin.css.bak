@@ -1,0 +1,225 @@
+select.input-text {
+	padding-right: 2em;
+	background-position: calc(100% - .4em);
+	background-size: 1.5em;
+	background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235e6c7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+ul#shipping_method li.shipping__list_item {
+    display: block;
+    float: left;
+    width: 100%;
+	margin-top: 5px;
+}
+
+ul#shipping_method li.shipping__list_item:first-of-type {
+    margin-top: 20px;
+}
+
+ul#shipping_method .shipping_method {
+    float: left;
+    margin-top: 0;
+}
+tr.shipping input:checked+label, #shipping_method tr.shipping input+label, #shipping_method li.shipping__list_item input+label{
+	width: 90%;
+}
+
+label.shipping__list_label {
+    float: left;
+	padding-top: 0;
+}
+
+.post_office_group{
+    float: right;
+    width: 93%;
+    display: block;
+}
+
+.woocommerce-shipping-totals table.shipping__table tbody th{
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.woocommerce-shipping-totals table.shipping__table tbody td{
+	padding-bottom: 0;
+    padding-top: 0px;
+}
+
+
+.shipnow-zip label {
+	display: block;
+	margin-bottom: 10px;
+}
+.shipnow-zip-field {
+	display: block;
+    width: 6em;
+	max-width: none;
+    min-width: 0;
+    text-align: left;
+    -moz-appearance: textfield;
+}
+.shipnow-zip-field::-webkit-outer-spin-button,
+.shipnow-zip-field::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.shipnow-estimator-results,
+.shipnow-estimator-error {
+	display: none;
+	padding-top: 1.5em;
+	text-align: center;
+}
+.shipnow-estimator-results {
+	overflow: hidden;
+}
+.shipnow-estimator-working .shipnow-zip-field {
+	background-position: center right 10px;
+	background-size: 1.5em;
+	background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3Csvg version='1.1' id='loader-1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50;' xml:space='preserve'%3E%3Cpath fill='%23333' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z'%3E%3CanimateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='0.6s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+}
+.shipnow-hidden {
+	display: none;
+}
+.shipnow-estimate,
+.shipnow-estimate-postoffice {
+	display: flex;
+    align-items: center;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.shipnow-estimate:last-child,
+.shipnow-estimate-postoffice:last-child,
+.shipnow-estimate:last-of-type,
+.shipnow-estimate-postoffice:last-of-type {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border-bottom: none;
+}
+.shipnow-estimate label,
+.shipnow-estimate-postoffice label {
+	flex: 1;
+    text-align: left;
+    padding-right: 20px;
+}
+.shipnow-estimate small,
+.shipnow-estimate-postoffice small {
+	font-size: .9em;
+}
+.shipnow-estimate-postoffice button {
+	flex: 0 0 auto;
+    white-space: nowrap;
+    margin-right: 16px;
+}
+.shipnow-estimate-cost {
+	white-space: nowrap;
+	flex: 0 0 auto;
+	font-weight: bold;
+}
+.shipnow-estimate-cost small {
+	display: none;
+}
+.shipnow-estimate-from .shipnow-estimate-cost small {
+	font-size: .7em;
+	font-weight: normal;
+	display: block;
+}
+.shipnow-estimate-postoffices {
+	display: none !important;
+}
+.shipnow-estimate-postoffices-popup-footer {
+	display: block;
+	color: #888;
+	text-align: center;
+	padding-top: 35px;
+	font-size: .85em;
+}
+.shipnow-popup {
+	/*
+	position: fixed;
+	z-index: 9999999;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.5);
+	*/
+	opacity: 0;
+	display: none;
+}
+.shipnow-popup>div {
+	/*
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width: 90vw;
+	max-width: 550px;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 10px 20px rgba(0,0,0,.2);
+	*/
+	color: #333 !important;
+}
+.shipnow-popup>div>div {
+	overflow-y: auto;
+	max-height: 65vh;
+	padding: 20px;
+}
+.shipnow-popup>div>.shipnow-close {
+    position: absolute;
+    right: 0;
+    top: -37px;
+    width: 25px;
+    height: 25px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-x'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    background-size: 25px;
+    cursor: pointer;
+}
+.shipnow-form.shipnow-change-zip-form {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.shipnow-form.shipnow-change-zip-form input {
+	margin: 0 15px;
+}
+.shipnow-options {
+	display: flex;
+	text-align: center;
+	font-weight: bold;
+    flex-wrap: wrap;
+	padding: .5em 0;
+}
+.shipnow-options a {
+	flex: 1 0 auto;
+	padding: .3em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@media (max-width: 540px) {
+	.shipnow-zip label {
+		flex: 0 0 60%;
+		margin-right: 0;
+		padding-right: 10px;
+	}
+	.shipnow-zip .input-text {
+		flex: 0 0 40%;
+		margin-right: 0;
+		margin-bottom: .5em;
+	}
+	.shipnow-estimate,
+	.shipnow-estimate label,
+	.shipnow-estimate-cost {
+		display: block;
+	}
+	.shipnow-estimate label {
+		padding-right: 0;
+	}
+	.shipnow-estimate-cost {
+		text-align: right;
+		padding-top: 10px;
+	}
+}
